@@ -1,0 +1,532 @@
+.TH "c/finalProj.c" 3 "Sat Apr 16 2011" "Version 1.0" "ERTS - Firebrd Swzz Knife" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+c/finalProj.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <avr/io.h>\fP
+.br
+\fC#include <avr/interrupt.h>\fP
+.br
+\fC#include <util/delay.h>\fP
+.br
+\fC#include <stdio.h>\fP
+.br
+\fC#include <string.h>\fP
+.br
+\fC#include <math.h>\fP
+.br
+\fC#include 'lcd.c'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcharPack\fP"
+.br
+.RI "\fIinternal struct to recieve data from zigbee \fP"
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBWHEEL_DIST\fP   15"
+.br
+.ti -1c
+.RI "#define \fBFCPU\fP   11059200ul"
+.br
+.ti -1c
+.RI "#define \fBDIST_PER_TICK\fP   0.544"
+.br
+.ti -1c
+.RI "#define \fBTICKS_PER_SEC\fP   11059"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBport_init\fP ()"
+.br
+.RI "\fIA basic-initialization function. \fP"
+.ti -1c
+.RI "void \fBtimer5_init\fP ()"
+.br
+.RI "\fIA timer5-initialization function. \fP"
+.ti -1c
+.RI "void \fBvelocity\fP (unsigned char left_motor, unsigned char right_motor)"
+.br
+.RI "\fIvelocity control \fP"
+.ti -1c
+.RI "void \fBmotors_delay\fP ()"
+.br
+.ti -1c
+.RI "unsigned char \fBADC_Conversion\fP (unsigned char Ch)"
+.br
+.RI "\fIFunction For ADC Conversion. \fP"
+.ti -1c
+.RI "void \fBlcd_port_config\fP (void)"
+.br
+.RI "\fIA LCD-initialization function. \fP"
+.ti -1c
+.RI "void \fBadc_pin_config\fP (void)"
+.br
+.RI "\fIA ADC-configuration function. \fP"
+.ti -1c
+.RI "void \fBmotion_pin_config\fP (void)"
+.br
+.RI "\fIA motion-configuration function. \fP"
+.ti -1c
+.RI "void \fBbuzzer_pin_config\fP (void)"
+.br
+.RI "\fIA buzzer-configuration function. \fP"
+.ti -1c
+.RI "void \fBbuzzer_on\fP (void)"
+.br
+.RI "\fIA Buzzer on function. \fP"
+.ti -1c
+.RI "void \fBbuzzer_off\fP (void)"
+.br
+.RI "\fIA Buzzer off function. \fP"
+.ti -1c
+.RI "void \fBadc_init\fP ()"
+.br
+.RI "\fIA adc initialization function. \fP"
+.ti -1c
+.RI "void \fBprint_sensor\fP (char row, char coloumn, unsigned char channel)"
+.br
+.RI "\fIPrint sensor values on LCD. \fP"
+.ti -1c
+.RI "void \fBmotion_set\fP (unsigned char Direction)"
+.br
+.RI "\fIsetting motor's direction \fP"
+.ti -1c
+.RI "void \fBforward\fP (void)"
+.br
+.RI "\fIsetting motor's forward \fP"
+.ti -1c
+.RI "void \fBback\fP (void)"
+.br
+.RI "\fIsetting motor's direction back \fP"
+.ti -1c
+.RI "void \fBleft\fP (void)"
+.br
+.RI "\fIsetting motor's direction left \fP"
+.ti -1c
+.RI "void \fBright\fP (void)"
+.br
+.RI "\fIsetting motor's direction right \fP"
+.ti -1c
+.RI "void \fBsoft_left\fP (void)"
+.br
+.RI "\fIsetting motor's direction soft left \fP"
+.ti -1c
+.RI "void \fBsoft_right\fP (void)"
+.br
+.RI "\fIsetting motor's direction soft right \fP"
+.ti -1c
+.RI "void \fBsoft_left_2\fP (void)"
+.br
+.RI "\fIsetting motor's direction soft left \fP"
+.ti -1c
+.RI "void \fBsoft_right_2\fP (void)"
+.br
+.RI "\fIsetting motor's direction soft right \fP"
+.ti -1c
+.RI "void \fBstop\fP (void)"
+.br
+.RI "\fIstop the bot \fP"
+.ti -1c
+.RI "void \fBleft_encoder_pin_config\fP (void)"
+.br
+.ti -1c
+.RI "void \fBright_encoder_pin_config\fP (void)"
+.br
+.RI "\fIstarting the right wheel encoder \fP"
+.ti -1c
+.RI "void \fBleft_position_encoder_interrupt_init\fP (void)"
+.br
+.RI "\fIenabling the left wheel encoder \fP"
+.ti -1c
+.RI "void \fBright_position_encoder_interrupt_init\fP (void)"
+.br
+.RI "\fIenabling the right wheel encoder \fP"
+.ti -1c
+.RI "\fBISR\fP (INT5_vect)"
+.br
+.RI "\fIInterrupt 5 - right wheel. \fP"
+.ti -1c
+.RI "\fBISR\fP (INT4_vect)"
+.br
+.RI "\fIInterrupt 4 - left wheel. \fP"
+.ti -1c
+.RI "void \fBuart0_init\fP (void)"
+.br
+.ti -1c
+.RI "\fBSIGNAL\fP (SIG_USART0_RECV)"
+.br
+.RI "\fIzigbee data recieve \fP"
+.ti -1c
+.RI "void \fBserial_sendString\fP (char str[])"
+.br
+.RI "\fIzigbee sendString \fP"
+.ti -1c
+.RI "void \fBinvoker\fP (char opt[50])"
+.br
+.RI "\fIfunction to invoke actions based on input \fP"
+.ti -1c
+.RI "void \fBserial_getString\fP (char *x, int n)"
+.br
+.RI "\fIzigbee getString \fP"
+.ti -1c
+.RI "void \fBlcd_num\fP (int x)"
+.br
+.ti -1c
+.RI "float \fBturnRatio\fP (float radius, int dir)"
+.br
+.RI "\fItimerrrrrrrrrrrrr \fP"
+.ti -1c
+.RI "void \fBstrictForward\fP ()"
+.br
+.RI "\fIstrictForward \fP"
+.ti -1c
+.RI "void \fBstrictBackward\fP ()"
+.br
+.RI "\fIstrictBackward \fP"
+.ti -1c
+.RI "void \fBrollLCD\fP (char str[])"
+.br
+.RI "\fIrolling LCD display \fP"
+.ti -1c
+.RI "void \fBmoveOnArc\fP (float radius, int dir)"
+.br
+.RI "\fIsetting motor's direction to move on arc \fP"
+.ti -1c
+.RI "void \fBsetTimer3\fP (int time, void(*f)(void))"
+.br
+.RI "\fIsetting timer 3 \fP"
+.ti -1c
+.RI "\fBISR\fP (TIMER3_OVF_vect)"
+.br
+.RI "\fItimer 3 overflow \fP"
+.ti -1c
+.RI "void \fBsetTimer1\fP (int time, void(*f)(void))"
+.br
+.RI "\fIsetting timer 1 \fP"
+.ti -1c
+.RI "\fBISR\fP (TIMER1_OVF_vect)"
+.br
+.RI "\fItimer 1 overflow \fP"
+.ti -1c
+.RI "\fBISR\fP (TIMER4_OVF_vect)"
+.br
+.RI "\fIsetting motor's direction \fP"
+.ti -1c
+.RI "void \fBtimer4_init\fP (void)"
+.br
+.RI "\fItimer 4 initialization \fP"
+.ti -1c
+.RI "void \fBinit_devices\fP (void)"
+.br
+.RI "\fIinitialize all devices \fP"
+.ti -1c
+.RI "void \fBtest\fP ()"
+.br
+.RI "\fIa example function \fP"
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "void(* \fBtimer3func\fP )(void)"
+.br
+.ti -1c
+.RI "void(* \fBtimer2func\fP )(void)"
+.br
+.ti -1c
+.RI "void(* \fBtimer1func\fP )(void)"
+.br
+.ti -1c
+.RI "int \fB_rollLCDFlag\fP"
+.br
+.ti -1c
+.RI "int \fB_LCDpos\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBADC_Value\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBflag1\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBflag2\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBLeft_white_line\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBCenter_white_line\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBRight_white_line\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBFront_Sharp_Sensor\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBFront_IR_Sensor\fP = 0"
+.br
+.ti -1c
+.RI "unsigned long long int \fBcurLeftCounter\fP"
+.br
+.ti -1c
+.RI "unsigned long long int \fBcurRightCounter\fP"
+.br
+.ti -1c
+.RI "unsigned long long int \fBsplLeftCounter\fP"
+.br
+.ti -1c
+.RI "unsigned long long int \fBsplRightCounter\fP"
+.br
+.ti -1c
+.RI "unsigned long long int \fBfunctionFlag\fP = 0"
+.br
+.ti -1c
+.RI "unsigned char \fBleftVel\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBrightVel\fP"
+.br
+.ti -1c
+.RI "float \fBbotRatio\fP"
+.br
+.ti -1c
+.RI "float \fBbotAngle\fP"
+.br
+.ti -1c
+.RI "float \fBbotDistance\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBdata\fP"
+.br
+.ti -1c
+.RI "char \fB_rollLCD\fP [100]"
+.br
+.ti -1c
+.RI "unsigned int \fBleftInt\fP = 0"
+.br
+.ti -1c
+.RI "unsigned int \fBrightInt\fP"
+.br
+.ti -1c
+.RI "\fBcharPack\fP * \fBserialDataStart\fP = NULL"
+.br
+.ti -1c
+.RI "\fBcharPack\fP * \fBserialDataEnd\fP = NULL"
+.br
+.ti -1c
+.RI "int \fBserial_lock\fP = 0"
+.br
+.ti -1c
+.RI "int \fBc\fP = 0"
+.br
+.ti -1c
+.RI "int \fBa\fP = 0"
+.br
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define DIST_PER_TICK   0.544"
+.SS "#define FCPU   11059200ul"
+.SS "#define TICKS_PER_SEC   11059"
+.SS "#define WHEEL_DIST   15"
+.SH "Function Documentation"
+.PP 
+.SS "unsigned char ADC_Conversion (unsigned charCh)"
+.PP
+Function For ADC Conversion. Function For ADC Conversion port setting 
+.SS "void adc_init ()"
+.PP
+A adc initialization function. the function to initialize ports for adc 
+.SS "void adc_pin_config (void)"
+.PP
+A ADC-configuration function. the function to configure use of ADC on the Bot 
+.SS "void back (void)"
+.PP
+setting motor's direction back Function used for setting motor's direction back 
+.SS "void buzzer_off (void)"
+.PP
+A Buzzer off function. the function to switch the buzzer off 
+.SS "void buzzer_on (void)"
+.PP
+A Buzzer on function. the function to switch the buzzer on 
+.SS "void buzzer_pin_config (void)"
+.PP
+A buzzer-configuration function. the function to configure use of buzzer on the Bot 
+.SS "void forward (void)"
+.PP
+setting motor's forward Function used for setting motor's direction forward 
+.SS "void init_devices (void)"
+.PP
+initialize all devices initialize all devices. call all other initialization function 
+.SS "void invoker (charopt[50])"
+.PP
+function to invoke actions based on input Function used for invoking action based on command recieved form the computer via zigbee 
+.SS "ISR (TIMER3_OVF_vect)"
+.PP
+timer 3 overflow Interrupt on overflow of timer 3 
+.SS "ISR (TIMER4_OVF_vect)"
+.PP
+setting motor's direction Function used for setting motor's direction 
+.SS "ISR (TIMER1_OVF_vect)"
+.PP
+timer 1 overflow Interrupt on overflow of timer 1 
+.SS "ISR (INT5_vect)"
+.PP
+Interrupt 5 - right wheel. ISR for right position encoder 
+.SS "ISR (INT4_vect)"
+.PP
+Interrupt 4 - left wheel. ISR for left position encoder 
+.SS "void lcd_num (intx)"zigbeeeeeeeeeeee display a number on LCD
+.PP
+Function used for displaying a number on LCD 
+.SS "void lcd_port_config (void)"
+.PP
+A LCD-initialization function. the function to initialize use of LCD on the Bot 
+.SS "void left (void)"
+.PP
+setting motor's direction left Function used for setting motor's direction left 
+.SS "void left_encoder_pin_config (void)"interrupt vectore............... starting the left wheel encoder
+.PP
+Function used for starting the left wheel encoder 
+.SS "void left_position_encoder_interrupt_init (void)"
+.PP
+enabling the left wheel encoder Function used for enabling the left wheel encoder 
+.SS "int main ()"
+.SS "void motion_pin_config (void)"
+.PP
+A motion-configuration function. the function to configure use of motion on the Bot 
+.SS "void motion_set (unsigned charDirection)"
+.PP
+setting motor's direction Function used for setting motor's direction 
+.SS "void motors_delay ()"
+.SS "void moveOnArc (floatradius, intdir)"
+.PP
+setting motor's direction to move on arc Function used for setting motor's direction to move on arc of given radius. dir=1 means left dir=0 means right 
+.SS "void port_init ()"
+.PP
+A basic-initialization function. the function to initialize ports for use of basic functionalities on the Bot 
+.SS "void print_sensor (charrow, charcoloumn, unsigned charchannel)"
+.PP
+Print sensor values on LCD. Function To Print Sesor Values At Desired Row And Coloumn Location on LCD 
+.SS "void right (void)"
+.PP
+setting motor's direction right Function used for setting motor's direction right 
+.SS "void right_encoder_pin_config (void)"
+.PP
+starting the right wheel encoder Function used for starting the right wheel encoder 
+.SS "void right_position_encoder_interrupt_init (void)"
+.PP
+enabling the right wheel encoder Function used for enabling the right wheel encoder 
+.SS "void rollLCD (charstr[])"
+.PP
+rolling LCD display non-blocking rolling lcd display 
+.SS "void serial_getString (char *x, intn)"
+.PP
+zigbee getString function to get a string from zigbee followed by a marker terminal # 
+.SS "void serial_sendString (charstr[])"
+.PP
+zigbee sendString function to recieve a string from zigbee followed by a marker terminal # 
+.SS "void setTimer1 (inttime, void(*)(void)f)"
+.PP
+setting timer 1 Function used for setting timer 1 function for Oninterrupt usage 
+.SS "void setTimer3 (inttime, void(*)(void)f)"
+.PP
+setting timer 3 Function used for setting timer 3 function for Oninterrupt usage 
+.SS "SIGNAL (SIG_USART0_RECV)"
+.PP
+zigbee data recieve intterupt generated when data is recieved from zigbee 
+.SS "void soft_left (void)"
+.PP
+setting motor's direction soft left Function used for setting motor's direction soft left 
+.SS "void soft_left_2 (void)"
+.PP
+setting motor's direction soft left Function used for setting motor's direction soft left Left wheel backward, right wheel stationary 
+.SS "void soft_right (void)"
+.PP
+setting motor's direction soft right Function used for setting motor's direction soft right Left wheel forward, Right wheel is stationary 
+.SS "void soft_right_2 (void)"
+.PP
+setting motor's direction soft right Function used for setting motor's direction Left wheel stationary, Right wheel backward 
+.SS "void stop (void)"
+.PP
+stop the bot Function used for stoping the bot. 
+.SS "void strictBackward ()"
+.PP
+strictBackward Function used for setting motor's direction strictBackward 
+.SS "void strictForward ()"
+.PP
+strictForward Function used for setting motor's direction strictForward 
+.SS "void test ()"
+.PP
+a example function a example function for use onInterrupt 
+.SS "void timer4_init (void)"
+.PP
+timer 4 initialization timer 4 initialization and setting high and low values and enable overflow interrupt 
+.SS "void timer5_init ()"
+.PP
+A timer5-initialization function. the function to initialize use of timer5 on the Bot 
+.SS "float turnRatio (floatradius, intdir)"
+.PP
+timerrrrrrrrrrrrr calculate turn ratio
+.PP
+for traversing a arc/ a straight line, we have to calculate a urn ratio, that is the ratio of velocities of the left and right wheel velocities. 
+.SS "void uart0_init (void)"zigbee zigbee usage
+.PP
+Function used for initializing zigbee usage 
+.SS "void velocity (unsigned charleft_motor, unsigned charright_motor)"
+.PP
+velocity control Function for setting velocities of both wheels. pulse width modulation 
+.SH "Variable Documentation"
+.PP 
+.SS "int \fB_LCDpos\fP"
+.SS "char \fB_rollLCD\fP[100]"
+.SS "int \fB_rollLCDFlag\fP"
+.SS "int \fBa\fP = 0"
+.SS "unsigned char \fBADC_Value\fP"
+.SS "float \fBbotAngle\fP"
+.SS "float \fBbotDistance\fP"
+.SS "float \fBbotRatio\fP"
+.SS "int \fBc\fP = 0"
+.SS "unsigned char \fBCenter_white_line\fP = 0"
+.SS "unsigned long long int \fBcurLeftCounter\fP"
+.SS "unsigned long long int \fBcurRightCounter\fP"
+.SS "unsigned char \fBdata\fP"
+.SS "unsigned char \fBflag1\fP = 0"
+.SS "unsigned char \fBflag2\fP = 0"
+.SS "unsigned char \fBFront_IR_Sensor\fP = 0"
+.SS "unsigned char \fBFront_Sharp_Sensor\fP = 0"
+.SS "unsigned long long int \fBfunctionFlag\fP = 0"
+.SS "unsigned char \fBLeft_white_line\fP = 0"
+.SS "unsigned int \fBleftInt\fP = 0"
+.SS "unsigned char \fBleftVel\fP"
+.SS "unsigned char \fBRight_white_line\fP = 0"
+.SS "unsigned int \fBrightInt\fP"
+.SS "unsigned char \fBrightVel\fP"
+.SS "int \fBserial_lock\fP = 0"
+.SS "\fBcharPack\fP* \fBserialDataEnd\fP = NULL"
+.SS "\fBcharPack\fP* \fBserialDataStart\fP = NULL"
+.SS "unsigned long long int \fBsplLeftCounter\fP"
+.SS "unsigned long long int \fBsplRightCounter\fP"
+.SS "void(* \fBtimer1func\fP)(void)"
+.SS "void(* \fBtimer2func\fP)(void)"
+.SS "void(* \fBtimer3func\fP)(void)"
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ERTS - Firebrd Swzz Knife from the source code.

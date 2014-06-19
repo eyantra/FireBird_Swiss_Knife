@@ -1,0 +1,1017 @@
+\hypertarget{final_proj_8c}{
+\section{c/finalProj.c File Reference}
+\label{final_proj_8c}\index{c/finalProj.c@{c/finalProj.c}}
+}
+{\ttfamily \#include $<$avr/io.h$>$}\par
+{\ttfamily \#include $<$avr/interrupt.h$>$}\par
+{\ttfamily \#include $<$util/delay.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$math.h$>$}\par
+{\ttfamily \#include \char`\"{}lcd.c\char`\"{}}\par
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structchar_pack}{charPack}
+\begin{DoxyCompactList}\small\item\em internal struct to recieve data from zigbee \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{final_proj_8c_a277445a693c18707e4f1915aa034090f}{WHEEL\_\-DIST}~15
+\item 
+\#define \hyperlink{final_proj_8c_a9d4ad5467cb8a39312513dfaaf4d950a}{FCPU}~11059200ul
+\item 
+\#define \hyperlink{final_proj_8c_a6be36e96bee312819874f5008d317e64}{DIST\_\-PER\_\-TICK}~0.544
+\item 
+\#define \hyperlink{final_proj_8c_a4a0c770328891d8916c1142a26481e4a}{TICKS\_\-PER\_\-SEC}~11059
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{final_proj_8c_a5c2ba800834495bb295891490cb1c760}{port\_\-init} ()
+\begin{DoxyCompactList}\small\item\em A basic-\/initialization function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a578f7cc9b705ce549aa856c927b102e8}{timer5\_\-init} ()
+\begin{DoxyCompactList}\small\item\em A timer5-\/initialization function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_aa5ae897cf316acc5c766757ffd41db19}{velocity} (unsigned char left\_\-motor, unsigned char right\_\-motor)
+\begin{DoxyCompactList}\small\item\em velocity control \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a049f338430ccb37404fd4bd4f505a0fa}{motors\_\-delay} ()
+\item 
+unsigned char \hyperlink{final_proj_8c_a0ded43a8c6c266f70a182a1e794ef1e7}{ADC\_\-Conversion} (unsigned char Ch)
+\begin{DoxyCompactList}\small\item\em Function For ADC Conversion. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_af55f75f83e87baf043c835ef54412b99}{lcd\_\-port\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em A LCD-\/initialization function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a27f01c5d49b89503a6d1380f151b19af}{adc\_\-pin\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em A ADC-\/configuration function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a17cf811a885634d71a23e8d4a20457f0}{motion\_\-pin\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em A motion-\/configuration function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a0c6063fcb1153fa4c8c348b9e759be78}{buzzer\_\-pin\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em A buzzer-\/configuration function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a4dd394839cc1e77986c84b3a3679bcd8}{buzzer\_\-on} (void)
+\begin{DoxyCompactList}\small\item\em A Buzzer on function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a93d07c81691fec7a85ea85117d6eca4f}{buzzer\_\-off} (void)
+\begin{DoxyCompactList}\small\item\em A Buzzer off function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}{adc\_\-init} ()
+\begin{DoxyCompactList}\small\item\em A adc initialization function. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_af1987bcf7f4a9f3bfbb930ace592d829}{print\_\-sensor} (char row, char coloumn, unsigned char channel)
+\begin{DoxyCompactList}\small\item\em Print sensor values on LCD. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a10cb8a1450bfb05cd9c72ad09ce7f2fe}{motion\_\-set} (unsigned char Direction)
+\begin{DoxyCompactList}\small\item\em setting motor's direction \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a0b5f946b51550fe862b59f91ae5fe9f9}{forward} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's forward \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a3344ca821ab12c0ceaa9a9c03b473462}{back} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction back \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_af58faf62f4e3606140250fb9ed314db5}{left} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction left \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ae56b9a694abd24fe3e7af591fc50b748}{right} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction right \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a9f675d6f341de272935fc3a4bd7683ce}{soft\_\-left} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction soft left \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a86d205d334c3761364b7db60cb0257b6}{soft\_\-right} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction soft right \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a84253b553e3fc3d181945f643e7aa82d}{soft\_\-left\_\-2} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction soft left \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a6ce417f3e8c28824215c61637845f18c}{soft\_\-right\_\-2} (void)
+\begin{DoxyCompactList}\small\item\em setting motor's direction soft right \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_aacf6bf8e121fea8b0a92d7197b73fe27}{stop} (void)
+\begin{DoxyCompactList}\small\item\em stop the bot \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ae20e0ac384c729be97c963cb470456a9}{left\_\-encoder\_\-pin\_\-config} (void)
+\item 
+void \hyperlink{final_proj_8c_a0db68d18b578ab9e12bc1d80915ef0d7}{right\_\-encoder\_\-pin\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em starting the right wheel encoder \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_aff7831bb17c1206ab082415ee14e21b1}{left\_\-position\_\-encoder\_\-interrupt\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em enabling the left wheel encoder \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a1333f7476858c2d76f7d725dfb0e7d88}{right\_\-position\_\-encoder\_\-interrupt\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em enabling the right wheel encoder \end{DoxyCompactList}\item 
+\hyperlink{final_proj_8c_a6225c50fbafa01589351ed487223aacb}{ISR} (INT5\_\-vect)
+\begin{DoxyCompactList}\small\item\em Interrupt 5 -\/ right wheel. \end{DoxyCompactList}\item 
+\hyperlink{final_proj_8c_a98a290ada01eb27fd2ff4564371566e5}{ISR} (INT4\_\-vect)
+\begin{DoxyCompactList}\small\item\em Interrupt 4 -\/ left wheel. \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_abbbf5055286d09a73b87f57f71dfd0b9}{uart0\_\-init} (void)
+\item 
+\hyperlink{final_proj_8c_ab5f8e79f6ffa3be348924e573e8dcfd1}{SIGNAL} (SIG\_\-USART0\_\-RECV)
+\begin{DoxyCompactList}\small\item\em zigbee data recieve \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ac015f5e5ae9d1311673eb7b0b86f91d7}{serial\_\-sendString} (char str\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em zigbee sendString \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a637c8be4007fb892f2892601ec754562}{invoker} (char opt\mbox{[}50\mbox{]})
+\begin{DoxyCompactList}\small\item\em function to invoke actions based on input \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a787712170856a744a7882fe54d4da61e}{serial\_\-getString} (char $\ast$x, int n)
+\begin{DoxyCompactList}\small\item\em zigbee getString \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ad037425b8f8696deb4b54c299447ee31}{lcd\_\-num} (int x)
+\item 
+float \hyperlink{final_proj_8c_a47ddd6752d093958b04202fd95965850}{turnRatio} (float radius, int dir)
+\begin{DoxyCompactList}\small\item\em timerrrrrrrrrrrrr \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a61f4015182a3cf40da7926f132f92372}{strictForward} ()
+\begin{DoxyCompactList}\small\item\em strictForward \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a04a6077b560a80151ddcabe41ec31b12}{strictBackward} ()
+\begin{DoxyCompactList}\small\item\em strictBackward \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_aff957159c67a234ca26347c6bbae32af}{rollLCD} (char str\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em rolling LCD display \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a2b6be2338b3cbd6da808722c8594d984}{moveOnArc} (float radius, int dir)
+\begin{DoxyCompactList}\small\item\em setting motor's direction to move on arc \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_abd9bb2ac15a54898f6593828d291967a}{setTimer3} (int time, void($\ast$f)(void))
+\begin{DoxyCompactList}\small\item\em setting timer 3 \end{DoxyCompactList}\item 
+\hyperlink{final_proj_8c_a3657e3972e59185a247b24ac0153d99c}{ISR} (TIMER3\_\-OVF\_\-vect)
+\begin{DoxyCompactList}\small\item\em timer 3 overflow \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a7dd257210285b371e373ba7a31eb380d}{setTimer1} (int time, void($\ast$f)(void))
+\begin{DoxyCompactList}\small\item\em setting timer 1 \end{DoxyCompactList}\item 
+\hyperlink{final_proj_8c_ab16889ae984b9b798989a0d239283cac}{ISR} (TIMER1\_\-OVF\_\-vect)
+\begin{DoxyCompactList}\small\item\em timer 1 overflow \end{DoxyCompactList}\item 
+\hyperlink{final_proj_8c_a33c40fdd48fd7bb540f034e5c489a38b}{ISR} (TIMER4\_\-OVF\_\-vect)
+\begin{DoxyCompactList}\small\item\em setting motor's direction \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ab76ec94ab79af9ad76f6aa8c706dd98b}{timer4\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em timer 4 initialization \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_a2e22d5e270a39ffcf36b38e02cc7b033}{init\_\-devices} (void)
+\begin{DoxyCompactList}\small\item\em initialize all devices \end{DoxyCompactList}\item 
+void \hyperlink{final_proj_8c_ae1a3968e7947464bee7714f6d43b7002}{test} ()
+\begin{DoxyCompactList}\small\item\em a example function \end{DoxyCompactList}\item 
+int \hyperlink{final_proj_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \hyperlink{final_proj_8c_a1147db97223925b40687977096b1c0c3}{timer3func} )(void)
+\item 
+void($\ast$ \hyperlink{final_proj_8c_a9833492d06413eb390642da8107a927f}{timer2func} )(void)
+\item 
+void($\ast$ \hyperlink{final_proj_8c_a0045d1f88925bdc12f7c5bdd2fe627f5}{timer1func} )(void)
+\item 
+int \hyperlink{final_proj_8c_a1c4b29871c26cad77c810d4952acffb0}{\_\-rollLCDFlag}
+\item 
+int \hyperlink{final_proj_8c_a8078ab237332cf2d126433d2145c5b09}{\_\-LCDpos}
+\item 
+unsigned char \hyperlink{final_proj_8c_a7478dc1bbf98fafa771a4e2c1a27f70b}{ADC\_\-Value}
+\item 
+unsigned char \hyperlink{final_proj_8c_adb29d4c758cec08083763cd206cb1c66}{flag1} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a56ccd9e3e18a64bfb8fd8d27b5e981f4}{flag2} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a40b3670b4091cb5fd22b40e0a6339864}{Left\_\-white\_\-line} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_ac84e16450d12eed142395bfcf7444ee7}{Center\_\-white\_\-line} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a714d95b2e8eafc387d408dbd07bb267d}{Right\_\-white\_\-line} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a510d73ef73ed67f76e6d6b13c86d093d}{Front\_\-Sharp\_\-Sensor} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a350f871cfbab83d0c434b6c6301e1cf7}{Front\_\-IR\_\-Sensor} = 0
+\item 
+unsigned long long int \hyperlink{final_proj_8c_ae6b54a87859f4c986c639119de89a12e}{curLeftCounter}
+\item 
+unsigned long long int \hyperlink{final_proj_8c_aa7bc7d1db0255c15e12868028a820259}{curRightCounter}
+\item 
+unsigned long long int \hyperlink{final_proj_8c_a70e1cccae057858958e1b2b044a5533e}{splLeftCounter}
+\item 
+unsigned long long int \hyperlink{final_proj_8c_a3bb4c8d83df3c6fc987f84c903982eaa}{splRightCounter}
+\item 
+unsigned long long int \hyperlink{final_proj_8c_af0337d91a0aaa599b68578c3fd959e13}{functionFlag} = 0
+\item 
+unsigned char \hyperlink{final_proj_8c_a14b46c1b5656141ac4e68982671b4231}{leftVel}
+\item 
+unsigned char \hyperlink{final_proj_8c_adf372cfdebfd8c1b1a3242d44a429765}{rightVel}
+\item 
+float \hyperlink{final_proj_8c_a34ad29ac67207aa318cb198642708797}{botRatio}
+\item 
+float \hyperlink{final_proj_8c_aa0a6fd52a65994a54b0df7986c711239}{botAngle}
+\item 
+float \hyperlink{final_proj_8c_a0e7f2a893c8f9459d412cdac4a97b5f1}{botDistance}
+\item 
+unsigned char \hyperlink{final_proj_8c_a433b1c9921d3b90f7c145c781a43f325}{data}
+\item 
+char \hyperlink{final_proj_8c_a4d6ac92366a57879306e1309e05d5e48}{\_\-rollLCD} \mbox{[}100\mbox{]}
+\item 
+unsigned int \hyperlink{final_proj_8c_ad1b8bcebc583ccd12578148b71f03f9d}{leftInt} = 0
+\item 
+unsigned int \hyperlink{final_proj_8c_ac336d6fd54cce2747fd440cc4f57757b}{rightInt}
+\item 
+\hyperlink{structchar_pack}{charPack} $\ast$ \hyperlink{final_proj_8c_a6634ba5609dd566725810b0098e131fa}{serialDataStart} = NULL
+\item 
+\hyperlink{structchar_pack}{charPack} $\ast$ \hyperlink{final_proj_8c_a017b76875416c6074306a46551c0d829}{serialDataEnd} = NULL
+\item 
+int \hyperlink{final_proj_8c_a48e354fd5fb7489e6a5bdf72f5e948a4}{serial\_\-lock} = 0
+\item 
+int \hyperlink{final_proj_8c_a4e1e0e72dd773439e333c84dd762a9c3}{c} = 0
+\item 
+int \hyperlink{final_proj_8c_aa4c2a5552e9bc49b1816ff532f558c74}{a} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{final_proj_8c_a6be36e96bee312819874f5008d317e64}{
+\index{finalProj.c@{finalProj.c}!DIST\_\-PER\_\-TICK@{DIST\_\-PER\_\-TICK}}
+\index{DIST\_\-PER\_\-TICK@{DIST\_\-PER\_\-TICK}!finalProj.c@{finalProj.c}}
+\subsubsection[{DIST\_\-PER\_\-TICK}]{\setlength{\rightskip}{0pt plus 5cm}\#define DIST\_\-PER\_\-TICK~0.544}}
+\label{final_proj_8c_a6be36e96bee312819874f5008d317e64}
+\hypertarget{final_proj_8c_a9d4ad5467cb8a39312513dfaaf4d950a}{
+\index{finalProj.c@{finalProj.c}!FCPU@{FCPU}}
+\index{FCPU@{FCPU}!finalProj.c@{finalProj.c}}
+\subsubsection[{FCPU}]{\setlength{\rightskip}{0pt plus 5cm}\#define FCPU~11059200ul}}
+\label{final_proj_8c_a9d4ad5467cb8a39312513dfaaf4d950a}
+\hypertarget{final_proj_8c_a4a0c770328891d8916c1142a26481e4a}{
+\index{finalProj.c@{finalProj.c}!TICKS\_\-PER\_\-SEC@{TICKS\_\-PER\_\-SEC}}
+\index{TICKS\_\-PER\_\-SEC@{TICKS\_\-PER\_\-SEC}!finalProj.c@{finalProj.c}}
+\subsubsection[{TICKS\_\-PER\_\-SEC}]{\setlength{\rightskip}{0pt plus 5cm}\#define TICKS\_\-PER\_\-SEC~11059}}
+\label{final_proj_8c_a4a0c770328891d8916c1142a26481e4a}
+\hypertarget{final_proj_8c_a277445a693c18707e4f1915aa034090f}{
+\index{finalProj.c@{finalProj.c}!WHEEL\_\-DIST@{WHEEL\_\-DIST}}
+\index{WHEEL\_\-DIST@{WHEEL\_\-DIST}!finalProj.c@{finalProj.c}}
+\subsubsection[{WHEEL\_\-DIST}]{\setlength{\rightskip}{0pt plus 5cm}\#define WHEEL\_\-DIST~15}}
+\label{final_proj_8c_a277445a693c18707e4f1915aa034090f}
+
+
+\subsection{Function Documentation}
+\hypertarget{final_proj_8c_a0ded43a8c6c266f70a182a1e794ef1e7}{
+\index{finalProj.c@{finalProj.c}!ADC\_\-Conversion@{ADC\_\-Conversion}}
+\index{ADC\_\-Conversion@{ADC\_\-Conversion}!finalProj.c@{finalProj.c}}
+\subsubsection[{ADC\_\-Conversion}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char ADC\_\-Conversion (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{Ch}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a0ded43a8c6c266f70a182a1e794ef1e7}
+
+
+Function For ADC Conversion. 
+
+Function For ADC Conversion port setting \hypertarget{final_proj_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}{
+\index{finalProj.c@{finalProj.c}!adc\_\-init@{adc\_\-init}}
+\index{adc\_\-init@{adc\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{adc\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void adc\_\-init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}
+
+
+A adc initialization function. 
+
+the function to initialize ports for adc \hypertarget{final_proj_8c_a27f01c5d49b89503a6d1380f151b19af}{
+\index{finalProj.c@{finalProj.c}!adc\_\-pin\_\-config@{adc\_\-pin\_\-config}}
+\index{adc\_\-pin\_\-config@{adc\_\-pin\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{adc\_\-pin\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void adc\_\-pin\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a27f01c5d49b89503a6d1380f151b19af}
+
+
+A ADC-\/configuration function. 
+
+the function to configure use of ADC on the Bot \hypertarget{final_proj_8c_a3344ca821ab12c0ceaa9a9c03b473462}{
+\index{finalProj.c@{finalProj.c}!back@{back}}
+\index{back@{back}!finalProj.c@{finalProj.c}}
+\subsubsection[{back}]{\setlength{\rightskip}{0pt plus 5cm}void back (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a3344ca821ab12c0ceaa9a9c03b473462}
+
+
+setting motor's direction back 
+
+Function used for setting motor's direction back \hypertarget{final_proj_8c_a93d07c81691fec7a85ea85117d6eca4f}{
+\index{finalProj.c@{finalProj.c}!buzzer\_\-off@{buzzer\_\-off}}
+\index{buzzer\_\-off@{buzzer\_\-off}!finalProj.c@{finalProj.c}}
+\subsubsection[{buzzer\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}void buzzer\_\-off (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a93d07c81691fec7a85ea85117d6eca4f}
+
+
+A Buzzer off function. 
+
+the function to switch the buzzer off \hypertarget{final_proj_8c_a4dd394839cc1e77986c84b3a3679bcd8}{
+\index{finalProj.c@{finalProj.c}!buzzer\_\-on@{buzzer\_\-on}}
+\index{buzzer\_\-on@{buzzer\_\-on}!finalProj.c@{finalProj.c}}
+\subsubsection[{buzzer\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void buzzer\_\-on (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a4dd394839cc1e77986c84b3a3679bcd8}
+
+
+A Buzzer on function. 
+
+the function to switch the buzzer on \hypertarget{final_proj_8c_a0c6063fcb1153fa4c8c348b9e759be78}{
+\index{finalProj.c@{finalProj.c}!buzzer\_\-pin\_\-config@{buzzer\_\-pin\_\-config}}
+\index{buzzer\_\-pin\_\-config@{buzzer\_\-pin\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{buzzer\_\-pin\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void buzzer\_\-pin\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a0c6063fcb1153fa4c8c348b9e759be78}
+
+
+A buzzer-\/configuration function. 
+
+the function to configure use of buzzer on the Bot \hypertarget{final_proj_8c_a0b5f946b51550fe862b59f91ae5fe9f9}{
+\index{finalProj.c@{finalProj.c}!forward@{forward}}
+\index{forward@{forward}!finalProj.c@{finalProj.c}}
+\subsubsection[{forward}]{\setlength{\rightskip}{0pt plus 5cm}void forward (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a0b5f946b51550fe862b59f91ae5fe9f9}
+
+
+setting motor's forward 
+
+Function used for setting motor's direction forward \hypertarget{final_proj_8c_a2e22d5e270a39ffcf36b38e02cc7b033}{
+\index{finalProj.c@{finalProj.c}!init\_\-devices@{init\_\-devices}}
+\index{init\_\-devices@{init\_\-devices}!finalProj.c@{finalProj.c}}
+\subsubsection[{init\_\-devices}]{\setlength{\rightskip}{0pt plus 5cm}void init\_\-devices (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a2e22d5e270a39ffcf36b38e02cc7b033}
+
+
+initialize all devices 
+
+initialize all devices. call all other initialization function \hypertarget{final_proj_8c_a637c8be4007fb892f2892601ec754562}{
+\index{finalProj.c@{finalProj.c}!invoker@{invoker}}
+\index{invoker@{invoker}!finalProj.c@{finalProj.c}}
+\subsubsection[{invoker}]{\setlength{\rightskip}{0pt plus 5cm}void invoker (
+\begin{DoxyParamCaption}
+\item[{char}]{opt\mbox{[}50\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a637c8be4007fb892f2892601ec754562}
+
+
+function to invoke actions based on input 
+
+Function used for invoking action based on command recieved form the computer via zigbee \hypertarget{final_proj_8c_a3657e3972e59185a247b24ac0153d99c}{
+\index{finalProj.c@{finalProj.c}!ISR@{ISR}}
+\index{ISR@{ISR}!finalProj.c@{finalProj.c}}
+\subsubsection[{ISR}]{\setlength{\rightskip}{0pt plus 5cm}ISR (
+\begin{DoxyParamCaption}
+\item[{TIMER3\_\-OVF\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a3657e3972e59185a247b24ac0153d99c}
+
+
+timer 3 overflow 
+
+Interrupt on overflow of timer 3 \hypertarget{final_proj_8c_a33c40fdd48fd7bb540f034e5c489a38b}{
+\index{finalProj.c@{finalProj.c}!ISR@{ISR}}
+\index{ISR@{ISR}!finalProj.c@{finalProj.c}}
+\subsubsection[{ISR}]{\setlength{\rightskip}{0pt plus 5cm}ISR (
+\begin{DoxyParamCaption}
+\item[{TIMER4\_\-OVF\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a33c40fdd48fd7bb540f034e5c489a38b}
+
+
+setting motor's direction 
+
+Function used for setting motor's direction \hypertarget{final_proj_8c_ab16889ae984b9b798989a0d239283cac}{
+\index{finalProj.c@{finalProj.c}!ISR@{ISR}}
+\index{ISR@{ISR}!finalProj.c@{finalProj.c}}
+\subsubsection[{ISR}]{\setlength{\rightskip}{0pt plus 5cm}ISR (
+\begin{DoxyParamCaption}
+\item[{TIMER1\_\-OVF\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ab16889ae984b9b798989a0d239283cac}
+
+
+timer 1 overflow 
+
+Interrupt on overflow of timer 1 \hypertarget{final_proj_8c_a6225c50fbafa01589351ed487223aacb}{
+\index{finalProj.c@{finalProj.c}!ISR@{ISR}}
+\index{ISR@{ISR}!finalProj.c@{finalProj.c}}
+\subsubsection[{ISR}]{\setlength{\rightskip}{0pt plus 5cm}ISR (
+\begin{DoxyParamCaption}
+\item[{INT5\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a6225c50fbafa01589351ed487223aacb}
+
+
+Interrupt 5 -\/ right wheel. 
+
+ISR for right position encoder \hypertarget{final_proj_8c_a98a290ada01eb27fd2ff4564371566e5}{
+\index{finalProj.c@{finalProj.c}!ISR@{ISR}}
+\index{ISR@{ISR}!finalProj.c@{finalProj.c}}
+\subsubsection[{ISR}]{\setlength{\rightskip}{0pt plus 5cm}ISR (
+\begin{DoxyParamCaption}
+\item[{INT4\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a98a290ada01eb27fd2ff4564371566e5}
+
+
+Interrupt 4 -\/ left wheel. 
+
+ISR for left position encoder \hypertarget{final_proj_8c_ad037425b8f8696deb4b54c299447ee31}{
+\index{finalProj.c@{finalProj.c}!lcd\_\-num@{lcd\_\-num}}
+\index{lcd\_\-num@{lcd\_\-num}!finalProj.c@{finalProj.c}}
+\subsubsection[{lcd\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-num (
+\begin{DoxyParamCaption}
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ad037425b8f8696deb4b54c299447ee31}
+zigbeeeeeeeeeeee display a number on LCD
+
+Function used for displaying a number on LCD \hypertarget{final_proj_8c_af55f75f83e87baf043c835ef54412b99}{
+\index{finalProj.c@{finalProj.c}!lcd\_\-port\_\-config@{lcd\_\-port\_\-config}}
+\index{lcd\_\-port\_\-config@{lcd\_\-port\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{lcd\_\-port\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\_\-port\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_af55f75f83e87baf043c835ef54412b99}
+
+
+A LCD-\/initialization function. 
+
+the function to initialize use of LCD on the Bot \hypertarget{final_proj_8c_af58faf62f4e3606140250fb9ed314db5}{
+\index{finalProj.c@{finalProj.c}!left@{left}}
+\index{left@{left}!finalProj.c@{finalProj.c}}
+\subsubsection[{left}]{\setlength{\rightskip}{0pt plus 5cm}void left (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_af58faf62f4e3606140250fb9ed314db5}
+
+
+setting motor's direction left 
+
+Function used for setting motor's direction left \hypertarget{final_proj_8c_ae20e0ac384c729be97c963cb470456a9}{
+\index{finalProj.c@{finalProj.c}!left\_\-encoder\_\-pin\_\-config@{left\_\-encoder\_\-pin\_\-config}}
+\index{left\_\-encoder\_\-pin\_\-config@{left\_\-encoder\_\-pin\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{left\_\-encoder\_\-pin\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void left\_\-encoder\_\-pin\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ae20e0ac384c729be97c963cb470456a9}
+interrupt vectore............... starting the left wheel encoder
+
+Function used for starting the left wheel encoder \hypertarget{final_proj_8c_aff7831bb17c1206ab082415ee14e21b1}{
+\index{finalProj.c@{finalProj.c}!left\_\-position\_\-encoder\_\-interrupt\_\-init@{left\_\-position\_\-encoder\_\-interrupt\_\-init}}
+\index{left\_\-position\_\-encoder\_\-interrupt\_\-init@{left\_\-position\_\-encoder\_\-interrupt\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{left\_\-position\_\-encoder\_\-interrupt\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void left\_\-position\_\-encoder\_\-interrupt\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_aff7831bb17c1206ab082415ee14e21b1}
+
+
+enabling the left wheel encoder 
+
+Function used for enabling the left wheel encoder \hypertarget{final_proj_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{finalProj.c@{finalProj.c}!main@{main}}
+\index{main@{main}!finalProj.c@{finalProj.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+\hypertarget{final_proj_8c_a17cf811a885634d71a23e8d4a20457f0}{
+\index{finalProj.c@{finalProj.c}!motion\_\-pin\_\-config@{motion\_\-pin\_\-config}}
+\index{motion\_\-pin\_\-config@{motion\_\-pin\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{motion\_\-pin\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void motion\_\-pin\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a17cf811a885634d71a23e8d4a20457f0}
+
+
+A motion-\/configuration function. 
+
+the function to configure use of motion on the Bot \hypertarget{final_proj_8c_a10cb8a1450bfb05cd9c72ad09ce7f2fe}{
+\index{finalProj.c@{finalProj.c}!motion\_\-set@{motion\_\-set}}
+\index{motion\_\-set@{motion\_\-set}!finalProj.c@{finalProj.c}}
+\subsubsection[{motion\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}void motion\_\-set (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{Direction}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a10cb8a1450bfb05cd9c72ad09ce7f2fe}
+
+
+setting motor's direction 
+
+Function used for setting motor's direction \hypertarget{final_proj_8c_a049f338430ccb37404fd4bd4f505a0fa}{
+\index{finalProj.c@{finalProj.c}!motors\_\-delay@{motors\_\-delay}}
+\index{motors\_\-delay@{motors\_\-delay}!finalProj.c@{finalProj.c}}
+\subsubsection[{motors\_\-delay}]{\setlength{\rightskip}{0pt plus 5cm}void motors\_\-delay (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a049f338430ccb37404fd4bd4f505a0fa}
+\hypertarget{final_proj_8c_a2b6be2338b3cbd6da808722c8594d984}{
+\index{finalProj.c@{finalProj.c}!moveOnArc@{moveOnArc}}
+\index{moveOnArc@{moveOnArc}!finalProj.c@{finalProj.c}}
+\subsubsection[{moveOnArc}]{\setlength{\rightskip}{0pt plus 5cm}void moveOnArc (
+\begin{DoxyParamCaption}
+\item[{float}]{radius, }
+\item[{int}]{dir}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a2b6be2338b3cbd6da808722c8594d984}
+
+
+setting motor's direction to move on arc 
+
+Function used for setting motor's direction to move on arc of given radius. dir=1 means left dir=0 means right \hypertarget{final_proj_8c_a5c2ba800834495bb295891490cb1c760}{
+\index{finalProj.c@{finalProj.c}!port\_\-init@{port\_\-init}}
+\index{port\_\-init@{port\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{port\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void port\_\-init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a5c2ba800834495bb295891490cb1c760}
+
+
+A basic-\/initialization function. 
+
+the function to initialize ports for use of basic functionalities on the Bot \hypertarget{final_proj_8c_af1987bcf7f4a9f3bfbb930ace592d829}{
+\index{finalProj.c@{finalProj.c}!print\_\-sensor@{print\_\-sensor}}
+\index{print\_\-sensor@{print\_\-sensor}!finalProj.c@{finalProj.c}}
+\subsubsection[{print\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-sensor (
+\begin{DoxyParamCaption}
+\item[{char}]{row, }
+\item[{char}]{coloumn, }
+\item[{unsigned char}]{channel}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_af1987bcf7f4a9f3bfbb930ace592d829}
+
+
+Print sensor values on LCD. 
+
+Function To Print Sesor Values At Desired Row And Coloumn Location on LCD \hypertarget{final_proj_8c_ae56b9a694abd24fe3e7af591fc50b748}{
+\index{finalProj.c@{finalProj.c}!right@{right}}
+\index{right@{right}!finalProj.c@{finalProj.c}}
+\subsubsection[{right}]{\setlength{\rightskip}{0pt plus 5cm}void right (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ae56b9a694abd24fe3e7af591fc50b748}
+
+
+setting motor's direction right 
+
+Function used for setting motor's direction right \hypertarget{final_proj_8c_a0db68d18b578ab9e12bc1d80915ef0d7}{
+\index{finalProj.c@{finalProj.c}!right\_\-encoder\_\-pin\_\-config@{right\_\-encoder\_\-pin\_\-config}}
+\index{right\_\-encoder\_\-pin\_\-config@{right\_\-encoder\_\-pin\_\-config}!finalProj.c@{finalProj.c}}
+\subsubsection[{right\_\-encoder\_\-pin\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void right\_\-encoder\_\-pin\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a0db68d18b578ab9e12bc1d80915ef0d7}
+
+
+starting the right wheel encoder 
+
+Function used for starting the right wheel encoder \hypertarget{final_proj_8c_a1333f7476858c2d76f7d725dfb0e7d88}{
+\index{finalProj.c@{finalProj.c}!right\_\-position\_\-encoder\_\-interrupt\_\-init@{right\_\-position\_\-encoder\_\-interrupt\_\-init}}
+\index{right\_\-position\_\-encoder\_\-interrupt\_\-init@{right\_\-position\_\-encoder\_\-interrupt\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{right\_\-position\_\-encoder\_\-interrupt\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void right\_\-position\_\-encoder\_\-interrupt\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a1333f7476858c2d76f7d725dfb0e7d88}
+
+
+enabling the right wheel encoder 
+
+Function used for enabling the right wheel encoder \hypertarget{final_proj_8c_aff957159c67a234ca26347c6bbae32af}{
+\index{finalProj.c@{finalProj.c}!rollLCD@{rollLCD}}
+\index{rollLCD@{rollLCD}!finalProj.c@{finalProj.c}}
+\subsubsection[{rollLCD}]{\setlength{\rightskip}{0pt plus 5cm}void rollLCD (
+\begin{DoxyParamCaption}
+\item[{char}]{str\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_aff957159c67a234ca26347c6bbae32af}
+
+
+rolling LCD display 
+
+non-\/blocking rolling lcd display \hypertarget{final_proj_8c_a787712170856a744a7882fe54d4da61e}{
+\index{finalProj.c@{finalProj.c}!serial\_\-getString@{serial\_\-getString}}
+\index{serial\_\-getString@{serial\_\-getString}!finalProj.c@{finalProj.c}}
+\subsubsection[{serial\_\-getString}]{\setlength{\rightskip}{0pt plus 5cm}void serial\_\-getString (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{x, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a787712170856a744a7882fe54d4da61e}
+
+
+zigbee getString 
+
+function to get a string from zigbee followed by a marker terminal \# \hypertarget{final_proj_8c_ac015f5e5ae9d1311673eb7b0b86f91d7}{
+\index{finalProj.c@{finalProj.c}!serial\_\-sendString@{serial\_\-sendString}}
+\index{serial\_\-sendString@{serial\_\-sendString}!finalProj.c@{finalProj.c}}
+\subsubsection[{serial\_\-sendString}]{\setlength{\rightskip}{0pt plus 5cm}void serial\_\-sendString (
+\begin{DoxyParamCaption}
+\item[{char}]{str\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ac015f5e5ae9d1311673eb7b0b86f91d7}
+
+
+zigbee sendString 
+
+function to recieve a string from zigbee followed by a marker terminal \# \hypertarget{final_proj_8c_a7dd257210285b371e373ba7a31eb380d}{
+\index{finalProj.c@{finalProj.c}!setTimer1@{setTimer1}}
+\index{setTimer1@{setTimer1}!finalProj.c@{finalProj.c}}
+\subsubsection[{setTimer1}]{\setlength{\rightskip}{0pt plus 5cm}void setTimer1 (
+\begin{DoxyParamCaption}
+\item[{int}]{time, }
+\item[{void($\ast$)(void)}]{f}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a7dd257210285b371e373ba7a31eb380d}
+
+
+setting timer 1 
+
+Function used for setting timer 1 function for Oninterrupt usage \hypertarget{final_proj_8c_abd9bb2ac15a54898f6593828d291967a}{
+\index{finalProj.c@{finalProj.c}!setTimer3@{setTimer3}}
+\index{setTimer3@{setTimer3}!finalProj.c@{finalProj.c}}
+\subsubsection[{setTimer3}]{\setlength{\rightskip}{0pt plus 5cm}void setTimer3 (
+\begin{DoxyParamCaption}
+\item[{int}]{time, }
+\item[{void($\ast$)(void)}]{f}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_abd9bb2ac15a54898f6593828d291967a}
+
+
+setting timer 3 
+
+Function used for setting timer 3 function for Oninterrupt usage \hypertarget{final_proj_8c_ab5f8e79f6ffa3be348924e573e8dcfd1}{
+\index{finalProj.c@{finalProj.c}!SIGNAL@{SIGNAL}}
+\index{SIGNAL@{SIGNAL}!finalProj.c@{finalProj.c}}
+\subsubsection[{SIGNAL}]{\setlength{\rightskip}{0pt plus 5cm}SIGNAL (
+\begin{DoxyParamCaption}
+\item[{SIG\_\-USART0\_\-RECV}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ab5f8e79f6ffa3be348924e573e8dcfd1}
+
+
+zigbee data recieve 
+
+intterupt generated when data is recieved from zigbee \hypertarget{final_proj_8c_a9f675d6f341de272935fc3a4bd7683ce}{
+\index{finalProj.c@{finalProj.c}!soft\_\-left@{soft\_\-left}}
+\index{soft\_\-left@{soft\_\-left}!finalProj.c@{finalProj.c}}
+\subsubsection[{soft\_\-left}]{\setlength{\rightskip}{0pt plus 5cm}void soft\_\-left (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a9f675d6f341de272935fc3a4bd7683ce}
+
+
+setting motor's direction soft left 
+
+Function used for setting motor's direction soft left \hypertarget{final_proj_8c_a84253b553e3fc3d181945f643e7aa82d}{
+\index{finalProj.c@{finalProj.c}!soft\_\-left\_\-2@{soft\_\-left\_\-2}}
+\index{soft\_\-left\_\-2@{soft\_\-left\_\-2}!finalProj.c@{finalProj.c}}
+\subsubsection[{soft\_\-left\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}void soft\_\-left\_\-2 (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a84253b553e3fc3d181945f643e7aa82d}
+
+
+setting motor's direction soft left 
+
+Function used for setting motor's direction soft left Left wheel backward, right wheel stationary \hypertarget{final_proj_8c_a86d205d334c3761364b7db60cb0257b6}{
+\index{finalProj.c@{finalProj.c}!soft\_\-right@{soft\_\-right}}
+\index{soft\_\-right@{soft\_\-right}!finalProj.c@{finalProj.c}}
+\subsubsection[{soft\_\-right}]{\setlength{\rightskip}{0pt plus 5cm}void soft\_\-right (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a86d205d334c3761364b7db60cb0257b6}
+
+
+setting motor's direction soft right 
+
+Function used for setting motor's direction soft right Left wheel forward, Right wheel is stationary \hypertarget{final_proj_8c_a6ce417f3e8c28824215c61637845f18c}{
+\index{finalProj.c@{finalProj.c}!soft\_\-right\_\-2@{soft\_\-right\_\-2}}
+\index{soft\_\-right\_\-2@{soft\_\-right\_\-2}!finalProj.c@{finalProj.c}}
+\subsubsection[{soft\_\-right\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}void soft\_\-right\_\-2 (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a6ce417f3e8c28824215c61637845f18c}
+
+
+setting motor's direction soft right 
+
+Function used for setting motor's direction Left wheel stationary, Right wheel backward \hypertarget{final_proj_8c_aacf6bf8e121fea8b0a92d7197b73fe27}{
+\index{finalProj.c@{finalProj.c}!stop@{stop}}
+\index{stop@{stop}!finalProj.c@{finalProj.c}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_aacf6bf8e121fea8b0a92d7197b73fe27}
+
+
+stop the bot 
+
+Function used for stoping the bot. \hypertarget{final_proj_8c_a04a6077b560a80151ddcabe41ec31b12}{
+\index{finalProj.c@{finalProj.c}!strictBackward@{strictBackward}}
+\index{strictBackward@{strictBackward}!finalProj.c@{finalProj.c}}
+\subsubsection[{strictBackward}]{\setlength{\rightskip}{0pt plus 5cm}void strictBackward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a04a6077b560a80151ddcabe41ec31b12}
+
+
+strictBackward 
+
+Function used for setting motor's direction strictBackward \hypertarget{final_proj_8c_a61f4015182a3cf40da7926f132f92372}{
+\index{finalProj.c@{finalProj.c}!strictForward@{strictForward}}
+\index{strictForward@{strictForward}!finalProj.c@{finalProj.c}}
+\subsubsection[{strictForward}]{\setlength{\rightskip}{0pt plus 5cm}void strictForward (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a61f4015182a3cf40da7926f132f92372}
+
+
+strictForward 
+
+Function used for setting motor's direction strictForward \hypertarget{final_proj_8c_ae1a3968e7947464bee7714f6d43b7002}{
+\index{finalProj.c@{finalProj.c}!test@{test}}
+\index{test@{test}!finalProj.c@{finalProj.c}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}void test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ae1a3968e7947464bee7714f6d43b7002}
+
+
+a example function 
+
+a example function for use onInterrupt \hypertarget{final_proj_8c_ab76ec94ab79af9ad76f6aa8c706dd98b}{
+\index{finalProj.c@{finalProj.c}!timer4\_\-init@{timer4\_\-init}}
+\index{timer4\_\-init@{timer4\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{timer4\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void timer4\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_ab76ec94ab79af9ad76f6aa8c706dd98b}
+
+
+timer 4 initialization 
+
+timer 4 initialization and setting high and low values and enable overflow interrupt \hypertarget{final_proj_8c_a578f7cc9b705ce549aa856c927b102e8}{
+\index{finalProj.c@{finalProj.c}!timer5\_\-init@{timer5\_\-init}}
+\index{timer5\_\-init@{timer5\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{timer5\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void timer5\_\-init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a578f7cc9b705ce549aa856c927b102e8}
+
+
+A timer5-\/initialization function. 
+
+the function to initialize use of timer5 on the Bot \hypertarget{final_proj_8c_a47ddd6752d093958b04202fd95965850}{
+\index{finalProj.c@{finalProj.c}!turnRatio@{turnRatio}}
+\index{turnRatio@{turnRatio}!finalProj.c@{finalProj.c}}
+\subsubsection[{turnRatio}]{\setlength{\rightskip}{0pt plus 5cm}float turnRatio (
+\begin{DoxyParamCaption}
+\item[{float}]{radius, }
+\item[{int}]{dir}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_a47ddd6752d093958b04202fd95965850}
+
+
+timerrrrrrrrrrrrr 
+
+calculate turn ratio
+
+for traversing a arc/ a straight line, we have to calculate a urn ratio, that is the ratio of velocities of the left and right wheel velocities. \hypertarget{final_proj_8c_abbbf5055286d09a73b87f57f71dfd0b9}{
+\index{finalProj.c@{finalProj.c}!uart0\_\-init@{uart0\_\-init}}
+\index{uart0\_\-init@{uart0\_\-init}!finalProj.c@{finalProj.c}}
+\subsubsection[{uart0\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void uart0\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_abbbf5055286d09a73b87f57f71dfd0b9}
+zigbee zigbee usage
+
+Function used for initializing zigbee usage \hypertarget{final_proj_8c_aa5ae897cf316acc5c766757ffd41db19}{
+\index{finalProj.c@{finalProj.c}!velocity@{velocity}}
+\index{velocity@{velocity}!finalProj.c@{finalProj.c}}
+\subsubsection[{velocity}]{\setlength{\rightskip}{0pt plus 5cm}void velocity (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{left\_\-motor, }
+\item[{unsigned char}]{right\_\-motor}
+\end{DoxyParamCaption}
+)}}
+\label{final_proj_8c_aa5ae897cf316acc5c766757ffd41db19}
+
+
+velocity control 
+
+Function for setting velocities of both wheels. pulse width modulation 
+
+\subsection{Variable Documentation}
+\hypertarget{final_proj_8c_a8078ab237332cf2d126433d2145c5b09}{
+\index{finalProj.c@{finalProj.c}!\_\-LCDpos@{\_\-LCDpos}}
+\index{\_\-LCDpos@{\_\-LCDpos}!finalProj.c@{finalProj.c}}
+\subsubsection[{\_\-LCDpos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \_\-LCDpos}}}
+\label{final_proj_8c_a8078ab237332cf2d126433d2145c5b09}
+\hypertarget{final_proj_8c_a4d6ac92366a57879306e1309e05d5e48}{
+\index{finalProj.c@{finalProj.c}!\_\-rollLCD@{\_\-rollLCD}}
+\index{\_\-rollLCD@{\_\-rollLCD}!finalProj.c@{finalProj.c}}
+\subsubsection[{\_\-rollLCD}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf \_\-rollLCD}\mbox{[}100\mbox{]}}}
+\label{final_proj_8c_a4d6ac92366a57879306e1309e05d5e48}
+\hypertarget{final_proj_8c_a1c4b29871c26cad77c810d4952acffb0}{
+\index{finalProj.c@{finalProj.c}!\_\-rollLCDFlag@{\_\-rollLCDFlag}}
+\index{\_\-rollLCDFlag@{\_\-rollLCDFlag}!finalProj.c@{finalProj.c}}
+\subsubsection[{\_\-rollLCDFlag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \_\-rollLCDFlag}}}
+\label{final_proj_8c_a1c4b29871c26cad77c810d4952acffb0}
+\hypertarget{final_proj_8c_aa4c2a5552e9bc49b1816ff532f558c74}{
+\index{finalProj.c@{finalProj.c}!a@{a}}
+\index{a@{a}!finalProj.c@{finalProj.c}}
+\subsubsection[{a}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf a} = 0}}
+\label{final_proj_8c_aa4c2a5552e9bc49b1816ff532f558c74}
+\hypertarget{final_proj_8c_a7478dc1bbf98fafa771a4e2c1a27f70b}{
+\index{finalProj.c@{finalProj.c}!ADC\_\-Value@{ADC\_\-Value}}
+\index{ADC\_\-Value@{ADC\_\-Value}!finalProj.c@{finalProj.c}}
+\subsubsection[{ADC\_\-Value}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf ADC\_\-Value}}}
+\label{final_proj_8c_a7478dc1bbf98fafa771a4e2c1a27f70b}
+\hypertarget{final_proj_8c_aa0a6fd52a65994a54b0df7986c711239}{
+\index{finalProj.c@{finalProj.c}!botAngle@{botAngle}}
+\index{botAngle@{botAngle}!finalProj.c@{finalProj.c}}
+\subsubsection[{botAngle}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf botAngle}}}
+\label{final_proj_8c_aa0a6fd52a65994a54b0df7986c711239}
+\hypertarget{final_proj_8c_a0e7f2a893c8f9459d412cdac4a97b5f1}{
+\index{finalProj.c@{finalProj.c}!botDistance@{botDistance}}
+\index{botDistance@{botDistance}!finalProj.c@{finalProj.c}}
+\subsubsection[{botDistance}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf botDistance}}}
+\label{final_proj_8c_a0e7f2a893c8f9459d412cdac4a97b5f1}
+\hypertarget{final_proj_8c_a34ad29ac67207aa318cb198642708797}{
+\index{finalProj.c@{finalProj.c}!botRatio@{botRatio}}
+\index{botRatio@{botRatio}!finalProj.c@{finalProj.c}}
+\subsubsection[{botRatio}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf botRatio}}}
+\label{final_proj_8c_a34ad29ac67207aa318cb198642708797}
+\hypertarget{final_proj_8c_a4e1e0e72dd773439e333c84dd762a9c3}{
+\index{finalProj.c@{finalProj.c}!c@{c}}
+\index{c@{c}!finalProj.c@{finalProj.c}}
+\subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf c} = 0}}
+\label{final_proj_8c_a4e1e0e72dd773439e333c84dd762a9c3}
+\hypertarget{final_proj_8c_ac84e16450d12eed142395bfcf7444ee7}{
+\index{finalProj.c@{finalProj.c}!Center\_\-white\_\-line@{Center\_\-white\_\-line}}
+\index{Center\_\-white\_\-line@{Center\_\-white\_\-line}!finalProj.c@{finalProj.c}}
+\subsubsection[{Center\_\-white\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf Center\_\-white\_\-line} = 0}}
+\label{final_proj_8c_ac84e16450d12eed142395bfcf7444ee7}
+\hypertarget{final_proj_8c_ae6b54a87859f4c986c639119de89a12e}{
+\index{finalProj.c@{finalProj.c}!curLeftCounter@{curLeftCounter}}
+\index{curLeftCounter@{curLeftCounter}!finalProj.c@{finalProj.c}}
+\subsubsection[{curLeftCounter}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf curLeftCounter}}}
+\label{final_proj_8c_ae6b54a87859f4c986c639119de89a12e}
+\hypertarget{final_proj_8c_aa7bc7d1db0255c15e12868028a820259}{
+\index{finalProj.c@{finalProj.c}!curRightCounter@{curRightCounter}}
+\index{curRightCounter@{curRightCounter}!finalProj.c@{finalProj.c}}
+\subsubsection[{curRightCounter}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf curRightCounter}}}
+\label{final_proj_8c_aa7bc7d1db0255c15e12868028a820259}
+\hypertarget{final_proj_8c_a433b1c9921d3b90f7c145c781a43f325}{
+\index{finalProj.c@{finalProj.c}!data@{data}}
+\index{data@{data}!finalProj.c@{finalProj.c}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf data}}}
+\label{final_proj_8c_a433b1c9921d3b90f7c145c781a43f325}
+\hypertarget{final_proj_8c_adb29d4c758cec08083763cd206cb1c66}{
+\index{finalProj.c@{finalProj.c}!flag1@{flag1}}
+\index{flag1@{flag1}!finalProj.c@{finalProj.c}}
+\subsubsection[{flag1}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf flag1} = 0}}
+\label{final_proj_8c_adb29d4c758cec08083763cd206cb1c66}
+\hypertarget{final_proj_8c_a56ccd9e3e18a64bfb8fd8d27b5e981f4}{
+\index{finalProj.c@{finalProj.c}!flag2@{flag2}}
+\index{flag2@{flag2}!finalProj.c@{finalProj.c}}
+\subsubsection[{flag2}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf flag2} = 0}}
+\label{final_proj_8c_a56ccd9e3e18a64bfb8fd8d27b5e981f4}
+\hypertarget{final_proj_8c_a350f871cfbab83d0c434b6c6301e1cf7}{
+\index{finalProj.c@{finalProj.c}!Front\_\-IR\_\-Sensor@{Front\_\-IR\_\-Sensor}}
+\index{Front\_\-IR\_\-Sensor@{Front\_\-IR\_\-Sensor}!finalProj.c@{finalProj.c}}
+\subsubsection[{Front\_\-IR\_\-Sensor}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf Front\_\-IR\_\-Sensor} = 0}}
+\label{final_proj_8c_a350f871cfbab83d0c434b6c6301e1cf7}
+\hypertarget{final_proj_8c_a510d73ef73ed67f76e6d6b13c86d093d}{
+\index{finalProj.c@{finalProj.c}!Front\_\-Sharp\_\-Sensor@{Front\_\-Sharp\_\-Sensor}}
+\index{Front\_\-Sharp\_\-Sensor@{Front\_\-Sharp\_\-Sensor}!finalProj.c@{finalProj.c}}
+\subsubsection[{Front\_\-Sharp\_\-Sensor}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf Front\_\-Sharp\_\-Sensor} = 0}}
+\label{final_proj_8c_a510d73ef73ed67f76e6d6b13c86d093d}
+\hypertarget{final_proj_8c_af0337d91a0aaa599b68578c3fd959e13}{
+\index{finalProj.c@{finalProj.c}!functionFlag@{functionFlag}}
+\index{functionFlag@{functionFlag}!finalProj.c@{finalProj.c}}
+\subsubsection[{functionFlag}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf functionFlag} = 0}}
+\label{final_proj_8c_af0337d91a0aaa599b68578c3fd959e13}
+\hypertarget{final_proj_8c_a40b3670b4091cb5fd22b40e0a6339864}{
+\index{finalProj.c@{finalProj.c}!Left\_\-white\_\-line@{Left\_\-white\_\-line}}
+\index{Left\_\-white\_\-line@{Left\_\-white\_\-line}!finalProj.c@{finalProj.c}}
+\subsubsection[{Left\_\-white\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf Left\_\-white\_\-line} = 0}}
+\label{final_proj_8c_a40b3670b4091cb5fd22b40e0a6339864}
+\hypertarget{final_proj_8c_ad1b8bcebc583ccd12578148b71f03f9d}{
+\index{finalProj.c@{finalProj.c}!leftInt@{leftInt}}
+\index{leftInt@{leftInt}!finalProj.c@{finalProj.c}}
+\subsubsection[{leftInt}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf leftInt} = 0}}
+\label{final_proj_8c_ad1b8bcebc583ccd12578148b71f03f9d}
+\hypertarget{final_proj_8c_a14b46c1b5656141ac4e68982671b4231}{
+\index{finalProj.c@{finalProj.c}!leftVel@{leftVel}}
+\index{leftVel@{leftVel}!finalProj.c@{finalProj.c}}
+\subsubsection[{leftVel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf leftVel}}}
+\label{final_proj_8c_a14b46c1b5656141ac4e68982671b4231}
+\hypertarget{final_proj_8c_a714d95b2e8eafc387d408dbd07bb267d}{
+\index{finalProj.c@{finalProj.c}!Right\_\-white\_\-line@{Right\_\-white\_\-line}}
+\index{Right\_\-white\_\-line@{Right\_\-white\_\-line}!finalProj.c@{finalProj.c}}
+\subsubsection[{Right\_\-white\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf Right\_\-white\_\-line} = 0}}
+\label{final_proj_8c_a714d95b2e8eafc387d408dbd07bb267d}
+\hypertarget{final_proj_8c_ac336d6fd54cce2747fd440cc4f57757b}{
+\index{finalProj.c@{finalProj.c}!rightInt@{rightInt}}
+\index{rightInt@{rightInt}!finalProj.c@{finalProj.c}}
+\subsubsection[{rightInt}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf rightInt}}}
+\label{final_proj_8c_ac336d6fd54cce2747fd440cc4f57757b}
+\hypertarget{final_proj_8c_adf372cfdebfd8c1b1a3242d44a429765}{
+\index{finalProj.c@{finalProj.c}!rightVel@{rightVel}}
+\index{rightVel@{rightVel}!finalProj.c@{finalProj.c}}
+\subsubsection[{rightVel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf rightVel}}}
+\label{final_proj_8c_adf372cfdebfd8c1b1a3242d44a429765}
+\hypertarget{final_proj_8c_a48e354fd5fb7489e6a5bdf72f5e948a4}{
+\index{finalProj.c@{finalProj.c}!serial\_\-lock@{serial\_\-lock}}
+\index{serial\_\-lock@{serial\_\-lock}!finalProj.c@{finalProj.c}}
+\subsubsection[{serial\_\-lock}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf serial\_\-lock} = 0}}
+\label{final_proj_8c_a48e354fd5fb7489e6a5bdf72f5e948a4}
+\hypertarget{final_proj_8c_a017b76875416c6074306a46551c0d829}{
+\index{finalProj.c@{finalProj.c}!serialDataEnd@{serialDataEnd}}
+\index{serialDataEnd@{serialDataEnd}!finalProj.c@{finalProj.c}}
+\subsubsection[{serialDataEnd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf charPack}$\ast$ {\bf serialDataEnd} = NULL}}
+\label{final_proj_8c_a017b76875416c6074306a46551c0d829}
+\hypertarget{final_proj_8c_a6634ba5609dd566725810b0098e131fa}{
+\index{finalProj.c@{finalProj.c}!serialDataStart@{serialDataStart}}
+\index{serialDataStart@{serialDataStart}!finalProj.c@{finalProj.c}}
+\subsubsection[{serialDataStart}]{\setlength{\rightskip}{0pt plus 5cm}{\bf charPack}$\ast$ {\bf serialDataStart} = NULL}}
+\label{final_proj_8c_a6634ba5609dd566725810b0098e131fa}
+\hypertarget{final_proj_8c_a70e1cccae057858958e1b2b044a5533e}{
+\index{finalProj.c@{finalProj.c}!splLeftCounter@{splLeftCounter}}
+\index{splLeftCounter@{splLeftCounter}!finalProj.c@{finalProj.c}}
+\subsubsection[{splLeftCounter}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf splLeftCounter}}}
+\label{final_proj_8c_a70e1cccae057858958e1b2b044a5533e}
+\hypertarget{final_proj_8c_a3bb4c8d83df3c6fc987f84c903982eaa}{
+\index{finalProj.c@{finalProj.c}!splRightCounter@{splRightCounter}}
+\index{splRightCounter@{splRightCounter}!finalProj.c@{finalProj.c}}
+\subsubsection[{splRightCounter}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long long int {\bf splRightCounter}}}
+\label{final_proj_8c_a3bb4c8d83df3c6fc987f84c903982eaa}
+\hypertarget{final_proj_8c_a0045d1f88925bdc12f7c5bdd2fe627f5}{
+\index{finalProj.c@{finalProj.c}!timer1func@{timer1func}}
+\index{timer1func@{timer1func}!finalProj.c@{finalProj.c}}
+\subsubsection[{timer1func}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf timer1func})(void)}}
+\label{final_proj_8c_a0045d1f88925bdc12f7c5bdd2fe627f5}
+\hypertarget{final_proj_8c_a9833492d06413eb390642da8107a927f}{
+\index{finalProj.c@{finalProj.c}!timer2func@{timer2func}}
+\index{timer2func@{timer2func}!finalProj.c@{finalProj.c}}
+\subsubsection[{timer2func}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf timer2func})(void)}}
+\label{final_proj_8c_a9833492d06413eb390642da8107a927f}
+\hypertarget{final_proj_8c_a1147db97223925b40687977096b1c0c3}{
+\index{finalProj.c@{finalProj.c}!timer3func@{timer3func}}
+\index{timer3func@{timer3func}!finalProj.c@{finalProj.c}}
+\subsubsection[{timer3func}]{\setlength{\rightskip}{0pt plus 5cm}void($\ast$ {\bf timer3func})(void)}}
+\label{final_proj_8c_a1147db97223925b40687977096b1c0c3}

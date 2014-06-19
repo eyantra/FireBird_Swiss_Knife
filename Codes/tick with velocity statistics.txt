@@ -1,0 +1,9 @@
+Left Encoder ticks Statictics
+Velocity(left,right)   No. of ticks
+75,75 		      25 
+100,100 		      10
+125,125                        7
+150,150                        6
+175,175                        4
+200,200                        4
+250,250                        3

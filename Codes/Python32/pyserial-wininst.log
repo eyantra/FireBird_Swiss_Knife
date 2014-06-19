@@ -1,0 +1,45 @@
+*** Installation started 2011/03/23 18:20 ***
+Source: C:\Users\saad\Downloads\pyserial-2.5.win32.exe
+999 Root Key: HKEY_CURRENT_USER
+020 Reg DB Key: [Software\Microsoft\Windows\CurrentVersion\Uninstall]pyserial-py3.2
+040 Reg DB Value: [Software\Microsoft\Windows\CurrentVersion\Uninstall\pyserial-py3.2]DisplayName=Python 3.2 pyserial-2.5
+040 Reg DB Value: [Software\Microsoft\Windows\CurrentVersion\Uninstall\pyserial-py3.2]UninstallString="C:\Python32\Removepyserial.exe" -u "C:\Python32\pyserial-wininst.log"
+200 File Copy: C:\Python32\Lib\site-packages\pyserial-2.5-py2.7.egg-info
+100 Made Dir: C:\Python32\Lib\site-packages\serial
+200 File Copy: C:\Python32\Lib\site-packages\serial\loopback_connection.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\rfc2217.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialcli.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialjava.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialposix.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialutil.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialwin32.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\sermsdos.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\socket_connection.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\win32.py
+200 File Copy: C:\Python32\Lib\site-packages\serial\__init__.py
+100 Made Dir: C:\Python32\Scripts
+200 File Copy: C:\Python32\Scripts\miniterm.py
+200 File Copy: C:\Python32\Scripts\miniterm.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\__init__.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\win32.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\socket_connection.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\sermsdos.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialwin32.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialutil.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialposix.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialjava.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialcli.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\rfc2217.pyc
+200 File Copy: C:\Python32\Lib\site-packages\serial\loopback_connection.pyc
+200 File Copy: C:\Python32\Scripts\miniterm.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\__init__.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\win32.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\socket_connection.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\sermsdos.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialwin32.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialutil.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialposix.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialjava.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\serialcli.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\rfc2217.pyo
+200 File Copy: C:\Python32\Lib\site-packages\serial\loopback_connection.pyo
